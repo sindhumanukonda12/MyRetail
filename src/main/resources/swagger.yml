@@ -1,0 +1,67 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: MyRetail
+  description: An API to retrive Product Details
+host: 'localhost:8081'
+schemes:
+  - http
+basePath: /
+produces:
+  - application/json
+consumes:
+  - application/json
+x-api-definition:
+  api_name: MyRetail
+  personnel:
+    owner: Sindhu
+  api_type: TENANT
+  lifecycle_status: BUILD
+  production_date: null
+  retirement_date: null
+  overall_data_classification: PUBLIC
+  business_criticality: P4
+  service_now_ci: TBD
+  links:
+    documentation_links:
+      - 'https://git.target.com/a600760/MyRetail'
+    logging_link:
+      - 'https://www.tbd.com'
+    metrics_link:
+      - 'https://www.tbd.com'
+    monitoring_link:
+      - 'https://www.tbd.com'
+    support_team_contact: TTS-API-Platform-Team@Target.com
+  endpoints:
+    internal:
+      production: 'http://localhost:8081/myRetail/v1/'
+      stage: 'http://localhost:8081/myRetail/v1/'
+      qa: null
+      ci: null
+paths:
+  /myRetail/v1/products/:
+    x-data_classification: PUBLIC
+    get:
+      x-incident_priority: P4
+      x-response_time_sla: 100ms
+      x-success_http_code: '200'
+      x-expected_tps: '100'
+      summary: Get Product details
+      description: Get Product details from MyRetail
+      tags:
+        - MyRetail
+      parameters:
+        - name: id
+          in: query
+          description: The Product Id.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success - Product Details
+          schema:
+            type: array
+            items:
+        '404':
+          description: Product not found
+          schema:
